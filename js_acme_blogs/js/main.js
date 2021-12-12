@@ -18,7 +18,7 @@ Functions:
 16. displayPosts~~~~~~~~~~~~~~~~~~~~~Finsihed
 17. toggleComments-------------------Finsihed
 18. refreshPosts~~~~~~~~~~~~~~~~~~~~~Finsihed
-19. selectMenuChangeEventHandler-----
+19. selectMenuChangeEventHandler-----Finished
 20. initPage~~~~~~~~~~~~~~~~~~~~~~~~~Finished?
 21. initApp--------------------------Finished?
 */
@@ -135,6 +135,7 @@ function addButtonListeners() {
 } // end addButtonListeners
 
 function removeButtonListeners() {
+
     // select all buttons inside the main element
     let buttons = document.querySelector("main").querySelectorAll("button");
 
@@ -188,7 +189,7 @@ function populateSelectMenu(users) {
     // if users is empty, return undefined
     if (!users) return;
     // select the selectMenu id
-    let menu = document.getElementById("selectMenu");
+    let menu = document.querySelector("#selectMenu");
     // passes the data to createSelectOptions to get an array
     let options = createSelectOptions(users);
 
@@ -410,7 +411,7 @@ let refreshPosts = async(posts) => {
 
 let selectMenuChangeEventHandler = async(event) => {
 
-        let userId = event ? .target ? .value || 1;
+        //let userId = event ? .target ? .value || 1;
         let posts = await getUserPosts(userId);
         let refArr = await refreshPosts(posts);
 
@@ -431,10 +432,10 @@ let initPage = async() => {
 function initApp() {
 
     // call initPage
-    let info = initPage();
+    initPage();
 
-    let selectMenu = document.getElementById("selectMenu");
-    selectMenu.addEventListener("change", selectMenuChangeEventHandler(), false);
+    let selectMenu = document.querySelector("#selectMenu");
+    selectMenu.addEventListener("change", function(event) { selectMenuChangeEventHandler(event) }, false);
 } // end initApp
 
-let app = document.addEventListener("DOMContentLoaded", initApp());
+document.addEventListener("DOMContentLoaded", initApp);
